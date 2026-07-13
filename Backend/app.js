@@ -5,7 +5,12 @@ import expenseRoutes from "./routes/expense.routes.js";
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());// for developememnt only
+app.use(
+  cors({
+    origin: "https://traxpense-1.onrender.com",
+  })
+);
 
 app.use(express.json());
 
