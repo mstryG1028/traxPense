@@ -7,9 +7,8 @@ import ViewExpense from "./pages/ViewExpense";
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
 

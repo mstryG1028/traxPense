@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import { addExpense } from "../services/expenseService";
 
@@ -27,7 +29,7 @@ function AddExpense() {
     event.preventDefault();
 
     if (!expense.amount || !expense.description || !expense.date) {
-      alert("Please fill all fields");
+      alert("Please fill all fields.");
       return;
     }
 
@@ -39,63 +41,77 @@ function AddExpense() {
       navigate("/");
     } catch (error) {
       console.log(error);
-      alert("Something went wrong");
+      alert("Failed to add expense.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Add Expense</h1>
+    <div className="max-w-3xl mx-auto px-4 py-10">
+      <Link
+        to="/"
+        className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 mb-6"
+      >
+        <FaArrowLeft />
+        Back to Home
+      </Link>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="block mb-2 font-medium">Amount</label>
+      <div className="bg-white rounded-2xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-slate-800 mb-2">Add Expense</h1>
 
-          <input
-            type="number"
-            name="amount"
-            placeholder="Enter amount"
-            value={expense.amount}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
+        <p className="text-gray-500 mb-8">
+          Fill in the details below to save a new expense.
+        </p>
 
-        <div>
-          <label className="block mb-2 font-medium">Description</label>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block font-medium mb-2">Amount</label>
 
-          <textarea
-            rows="4"
-            name="description"
-            placeholder="Enter description"
-            value={expense.description}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3 outline-none resize-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
+            <input
+              type="number"
+              name="amount"
+              value={expense.amount}
+              onChange={handleChange}
+              placeholder="Enter amount"
+              className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
 
-        <div>
-          <label className="block mb-2 font-medium">Date</label>
+          <div>
+            <label className="block font-medium mb-2">Description</label>
 
-          <input
-            type="date"
-            name="date"
-            value={expense.date}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
+            <textarea
+              rows="4"
+              name="description"
+              value={expense.description}
+              onChange={handleChange}
+              placeholder="Enter description"
+              className="w-full border rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
-        >
-          {loading ? "Saving..." : "Add Expense"}
-        </button>
-      </form>
+          <div>
+            <label className="block font-medium mb-2">Date</label>
+
+            <input
+              type="date"
+              name="date"
+              value={expense.date}
+              onChange={handleChange}
+              className="w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl transition"
+          >
+            {loading ? "Saving..." : "Add Expense"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
