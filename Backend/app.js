@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import expenseRoutes from "./routes/expenseRoutes.js";
+import expenseRoutes from "./routes/expense.routes.js";
 
 const app = express();
 
