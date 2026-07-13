@@ -131,7 +131,7 @@ npm run dev
 
 " Deepak Mistry "
 
-GitHub: https://github.com/your-username
+GitHub: https://github.com/mstryG1028/traxPense
 
 
 
